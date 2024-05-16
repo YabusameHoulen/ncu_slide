@@ -22,7 +22,7 @@
   let background = if background-logo != none {
     place(
       top + left,
-      dx: 53.2% - background-logo.at("width", default: 12cm) / 2,
+      dx: 53.1% - background-logo.at("width", default: 12cm) / 2,
       dy: 23.7%,
       background-logo,
     )
@@ -185,14 +185,14 @@
 
 #let end-slide(
   background_color:none,
-  background_logo: image("assets/南昌大学.svg", width: 11.5cm),
-  foreground: yellow,
+  background_logo: image("assets/南昌大学_light.svg", width: 11.5cm),
+  foreground: blue,
   body,
 ) = {
   let background = if background_logo != none {
     place(
       top + left,
-      dx: 80% - background_logo.at("width", default: 12cm) / 2,
+      dx: 77% - background_logo.at("width", default: 12cm) / 2,
       dy: 23.7%,
       background_logo,
     )
