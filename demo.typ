@@ -84,26 +84,36 @@
 #slide(title: [Rejection Sampling])[
   用容易采样的分布采样目标分布
    
-  #enum(
-    indent: 2em,
-    [用放缩过的易采样分布G（Gaussian）包住目标分布],
-    [对 Uniform [0,1] 分布取样 u],
-    [对G采样得到样本 $x_0$ ,计算$x_0$处的目标分布 $T(x_0)$],
-    [$T(x_0)/G(x_0) >= u$ 则输出$x_0$],
-  )
+  #only(1)[
+    #enum(
+      indent: 2em,
+      [用放缩过的易采样分布$G$(Gaussian)包住目标分布],
+      [对G采样得到样本 $x_0$ ,计算$x_0$处目标分布 $t = T(x_0)$],
+    )
+  ]
+   
+  #only(2)[
+    #enum(
+      indent: 2em,
+      [用放缩过的易采样分布$G$(Gaussian)包住目标分布],
+      [对G采样得到样本 $x_0$ ,计算$x_0$处目标分布 $t = T(x_0)$],
+      [对均匀分布[0,$G(x_0)$]取样 g],
+      [若 $t >= g$ 则输出 $x_0$],
+    )
+  ]
    
 ][
   \
   #image(width: 85%, height: 50%, "graph/rejection_sampling.png") 
   #h(1em) 对重尾分布采样效果$times$@bishop2006pattern
 ]
-
+ 
 #slide(title: [Markov Chain])[
   假定存在单一的后验稳态分布\
   和满足遍历性的Markov链......
-  
+   
   满足遍历性 (Ergodicity) 时Markov Chain 会收敛到唯一的目标分布
-
+   
   *细致平衡 (detail balance)* $ S(i) T(i,j) = S(j) T(j,i) $
    
 ][
@@ -112,10 +122,27 @@
   #align(center)[状态转移矩阵 $T(i,j)$]
 ]
  
-#slide(title: [Metropolis-Hastings])[
-   
+#slide(
+  title: [Metropolis-Hastings],
+)[
+  
+  取 proposal 分布 G (Gaussian)
+  
+  设定采样的起始值
+
+  接受率设置为 A()
+
+  $ cancel(x) $
+
+  东方
+
+  东方
+
+][
+  #align(center + top)[#image(height: 70%, "graph/MH_example.png")MH采样示例]
    
 ]
+
 
 #slide(title: [Markov Chain])[
   #set rect(inset: 1pt, fill: rgb("e4e5ea"), width: 100%)
@@ -133,15 +160,15 @@
     #enum(indent: 1em, [困在局部极值点], [采样结果不收敛], [结束条件不明确], [可能“维度诅咒”])
   ]
 ]
-
-
+ 
+ 
 #slide()[
   *Nested Sampling* 
   #set text(20pt)
    
   可以解决Markov Chain的上述问题@ashton_nested_2022
    
-  东方
+  体积元对先验概率加权，得到
 ][
   #align(center, image("graph/Nested_Sampling.png"))
 ]
