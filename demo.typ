@@ -1,24 +1,42 @@
 #import "@preview/polylux:0.3.1": *
-#import "@preview/cuti:0.2.1": fakebold
+#import "@preview/cuti:0.2.1": fakeitalic
 #import "themes/ncu.typ": *
 // #show: show-cn-fakebold
 #set text(font: ("Times New Roman", "寒蟬錦書宋"))
 
 #show: ncu-theme.with(footer: [南昌大学 肖君宇], short-title: [GRB数据处理])
  
-#title-slide(
-  title: [GRB数据处理],
-  subtitle: [贝叶斯方法],
-  authors: ([肖君宇]),
-  date: [2024年5月19日],
-)
+#title-slide(title: [GRB数据处理], subtitle: [#text(20pt)[
+    An #text(red)[*Oversimplified*] Introduction to Bayesian Methods
+  ]], authors: ([肖君宇]), date: [2024年5月19日])
 
 
 #slide(title: [#h(12em)简介])[
-  基于MCMC的
+  基于MCMC的贝叶斯数据分析方法，几乎被应用在所有科学学科来分析和解释数据。
+   
+  虽然贝叶斯推理的一系列方法很早就被人提出，但贝叶斯式的计算冗长困难。在20世纪80年代出现MCMC方法之后才被广泛使用。
 ][
-  #lorem(20)
+  #set rect(inset: 0pt, fill: rgb("e4e5ea"))
+  #grid(
+    columns: (auto, auto),
+    rows: (auto, auto),
+    gutter: 0.2pt,
+    rect[#image(height: 80%, "graph/bayes_self_figure.png")],
+    rect[#image(height: 80%, "graph/laplace_self_figure.jpg")],
+  ) 
 ]
+
+#slide(
+  )[
+  #place(top + center, [#image(width: 82%, "graph/bayesian_workflow.png")])
+   
+][
+  频率学派中的“不确定性”依赖于想象的数据抽样的前提。参数和模型都是确定的，没有概率分布，多次重复测量的结果才体现概率分布 \
+  \
+  贝叶斯方法将随机性视为信息的特质，可能更加符合我们主观上感知的世界运转模式 @van_de_schoot_bayesian_2021
+]
+
+
 
 #new-section-slide("一点统计知识")
 
@@ -28,14 +46,15 @@
   #set text(22pt)
   $ P(theta|"data") = (P("data"|theta) dot P(theta))/P("data") $
   \
+  #set text(20pt)
   #list(
     indent: 4em,
     [$P(theta)$ --- 先验概率],
-    [$P("data")$ --- 证据(Evidence)],
+    [$P("data"|theta)$ --- 似然 (likelihood)],
+    [$P("data")$ --- 证据 (Evidence)],
     [$P(theta|"data")$ --- 后验概率],
   )
-  \
-  #h(3em)$P(theta|"data") prop P("data")dot P(theta)$
+  #h(4em)$P(theta|"data") prop P("data")dot P(theta)$
 ][
   #set text(22pt)
   MLE看作MAP特例 (形式上) :
@@ -63,31 +82,41 @@
 #new-section-slide("采样方法简介")
 
 #slide(title: [Rejection Sampling])[
-用容易采样的分布采样目标分布
- 
-#set text(22pt)
-```py
-    import test
-    print("hello world !!!")
-    while true:
-        gulludsg
-```
+  用容易采样的分布采样目标分布
+   
+  #enum(
+    indent: 2em,
+    [用放缩过的易采样分布G（Gaussian）包住目标分布],
+    [对 Uniform [0,1] 分布取样 u],
+    [对G采样得到样本 $x_0$ ,计算$x_0$处的目标分布 $T(x_0)$],
+    [$T(x_0)/G(x_0) >= u$ 则输出$x_0$],
+  )
+   
 ][
+  \
   #image(width: 85%, height: 50%, "graph/rejection_sampling.png") 
+  #h(1em) 对重尾分布采样效果$times$@bishop2006pattern
 ]
 
 #slide(title: [Markov Chain])[
-  假定存在单一的稳态分布,定义遍历的Markov链，可能状态的集合是样本空间，稳态分布是要采样的后验分布
+  假定存在单一的后验稳态分布\
+  和满足遍历性的Markov链......
   
-  状态转移矩阵
+  满足遍历性 (Ergodicity) 时Markov Chain 会收敛到唯一的目标分布
+
+  *细致平衡 (detail balance)* $ S(i) T(i,j) = S(j) T(j,i) $
    
-  一致平稳 
-   
-  细致平衡 $ pi(i) P(i,j) = pi(j) P(j,i) $
-   
+][
+  #align(center + top, image(width: 50%, "graph/MC_State.png"))
+  $ T = mat(p_11, p_12;p_21, p_22) $
+  #align(center)[状态转移矩阵 $T(i,j)$]
 ]
  
- 
+#slide(title: [Metropolis-Hastings])[
+   
+   
+]
+
 #slide(title: [Markov Chain])[
   #set rect(inset: 1pt, fill: rgb("e4e5ea"), width: 100%)
   #grid(
@@ -95,7 +124,7 @@
     rows: (auto, auto),
     gutter: 0.2pt,
     rect[#image("graph/MCMC_trap_in.png")],
-    rect[#image(width: 100%,height: 65.8%,"graph/curse_of_dim.png")],
+    rect[#image(width: 100%, height: 65.8%, "graph/curse_of_dim.png")],
   )
 ][
   #align(center)[
@@ -106,24 +135,33 @@
 ]
 
 
-#slide(title: [Nested Sampling])[
-  咕噜咕噜 @ashton_nested_2022
-]
- 
-#slide(title: [Nested Sampling])[
-  #text(20pt)[
-    你说的对，但是Nested Sampling 是 Skilling 在2004年在贝叶斯框架下提出的采样方法
-
-    采样发生在约束的高维先验下，在这里被选中的livepoints将被逐个内移引导先验估计
-    
-    你将需要非负的积分函数，在自由的_中邂逅性格各异、能力独特的_们，和它们一起击败。
-    得到后验密度估计的同时，逐步计算Evidence的真值
-    ]
+#slide()[
+  *Nested Sampling* 
+  #set text(20pt)
+   
+  可以解决Markov Chain的上述问题@ashton_nested_2022
+   
+  东方
 ][
-
+  #align(center, image("graph/Nested_Sampling.png"))
 ]
  
-#new-section-slide("简单例子")
+#slide()[
+  #set text(18.7pt)
+  你说的对，但是Nested Sampling 是 Skilling 于2004年在贝叶斯框架下提出的采样方法
+   
+  采样发生在约束的高维先验下，在这里一定数量的livepoints将被逐渐 “内移” 来引导计算
+   
+  你将需要非负的似然函数，在分层抽样中计算各个点的似然值，按值的大小去除最小的点
+   
+  在对后验分布采样的同时，估计体积元大小(e.g. $(X_(i-1)+X_i)/2$)，逐步累计得到估计的Evidence
+  $ "Evidence" = sum_i^n_"iter" (X_(i)+X_(i-1))/2 L^star_i $
+][
+  #align(center, image("graph/Rad_NS.png"))
+   
+]
+ 
+#new-section-slide("GRB处理例子")
  
  
 #slide(title: [GRB220209A])[
@@ -150,14 +188,19 @@
  
 #slide(
   )[
-  #bibliography(title: [#text(25pt)[参考书籍文献]], style: "gb-7714-2015-numeric", "ref.bib")
+  #set text(22pt)
+  #bibliography(title: [参考书籍文献], style: "gb-7714-2015-numeric", "ref.bib")
 ]
  
  
-#end-slide(background_color: white)[
-  感谢聆听!
-   
-  各位老师同学批评指正 
-   
-  #text(size: 6pt, fill: aqua)[#h(4em)回答不上来直接拉倒]
+#end-slide(background_color: aqua)[
+  #let ferris = image(width: 45%, height: 47%, "graph/Ferris.png")
+  #place(
+    top + left,
+    dx: 27% - ferris .at("width", default: 12cm) / 2,
+    dy: 24.7%,
+    [ #h(1.5em)
+      #text(blue, 45pt)[感谢您的倾听]
+      #ferris ],
+  )
 ]

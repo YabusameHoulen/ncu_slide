@@ -20,8 +20,135 @@
   year     = {2022},
   note     = {arXiv:2205.15570 [astro-ph, physics:cond-mat, physics:hep-ph, stat]},
   keywords = {High Energy Physics - Phenomenology, Astrophysics - Cosmology and Nongalactic Astrophysics, Astrophysics - Instrumentation and Methods for Astrophysics, Statistics - Computation, Condensed Matter - Materials Science},
-  pages    = {39},
-  file     = {arXiv Fulltext PDF:files/3953/Ashton 等 - 2022 - Nested sampling for physical scientists.pdf:application/pdf;arXiv.org Snapshot:files/3954/2205.html:text/html}
+  pages    = {39}
 }
 
 
+@misc{betancourt_conceptual_2018,
+  title     = {A {Conceptual} {Introduction} to {Hamiltonian} {Monte} {Carlo}},
+  url       = {http://arxiv.org/abs/1701.02434},
+  doi       = {10.48550/arXiv.1701.02434},
+  abstract  = {Hamiltonian Monte Carlo has proven a remarkable empirical success, but only recently have we begun to develop a rigorous understanding of why it performs so well on difficult problems and how it is best applied in practice. Unfortunately, that understanding is confined within the mathematics of differential geometry which has limited its dissemination, especially to the applied communities for which it is particularly important. In this review I provide a comprehensive conceptual account of these theoretical foundations, focusing on developing a principled intuition behind the method and its optimal implementations rather of any exhaustive rigor. Whether a practitioner or a statistician, the dedicated reader will acquire a solid grasp of how Hamiltonian Monte Carlo works, when it succeeds, and, perhaps most importantly, when it fails.},
+  urldate   = {2024-02-02},
+  publisher = {arXiv},
+  author    = {Betancourt, Michael},
+  month     = jul,
+  year      = {2018},
+  note      = {arXiv:1701.02434 [stat]},
+  keywords  = {Statistics - Methodology},
+  annote    = {Comment: 60 pages, 42 figures}
+}
+
+@article{sharma_markov_2017,
+  title    = {Markov {Chain} {Monte} {Carlo} {Methods} for {Bayesian} {Data} {Analysis} in {Astronomy}},
+  volume   = {55},
+  url      = {https://doi.org/10.1146/annurev-astro-082214-122339},
+  doi      = {10.1146/annurev-astro-082214-122339},
+  abstract = {Markov chain Monte Carlo–based Bayesian data analysis has now become the method of choice for analyzing and interpreting data in almost all disciplines of science. In astronomy, over the past decade, we have also seen a steady increase in the number of papers that employ Monte Carlo–based Bayesian analysis. New, efficient Monte Carlo–based methods are continuously being developed and explored. In this review, we first explain the basics of Bayesian theory and discuss how to set up data analysis problems within this framework. Next, we provide an overview of various Monte Carlo–based methods for performing Bayesian data analysis. Finally, we discuss advanced ideas that enable us to tackle complex problems and thus hold great promise for the future. We also distribute downloadable computer software (https://github.com/sanjibs/bmcmc) Python that implements some of the algorithms and examples discussed here.},
+  number   = {1},
+  urldate  = {2024-02-25},
+  journal  = {Annual Review of Astronomy and Astrophysics},
+  author   = {Sharma, Sanjib},
+  year     = {2017},
+  note     = {\_eprint: https://doi.org/10.1146/annurev-astro-082214-122339},
+  keywords = {methods: data analysis, numerical statistical},
+  pages    = {213--259}
+}
+
+@misc{betancourt_unified_2015,
+  title     = {A {Unified} {Treatment} of {Predictive} {Model} {Comparison}},
+  url       = {http://arxiv.org/abs/1506.02273},
+  doi       = {10.48550/arXiv.1506.02273},
+  abstract  = {The predictive performance of any inferential model is critical to its practical success, but quantifying predictive performance is a subtle statistical problem. In this paper I show how the natural structure of any inferential problem defines a canonical measure of relative predictive performance and then demonstrate how approximations of this measure yield many of the model comparison techniques popular in statistics and machine learning.},
+  urldate   = {2024-03-26},
+  publisher = {arXiv},
+  author    = {Betancourt, Michael},
+  month     = jun,
+  year      = {2015},
+  note      = {arXiv:1506.02273 [stat]},
+  keywords  = {Statistics - Methodology},
+  annote    = {Comment: 20 pages, 11 figures}
+}
+
+@misc{vanderplas_frequentism_2014,
+  title      = {Frequentism and {Bayesianism}: {A} {Python}-driven {Primer}},
+  shorttitle = {Frequentism and {Bayesianism}},
+  url        = {http://arxiv.org/abs/1411.5018},
+  doi        = {10.48550/arXiv.1411.5018},
+  abstract   = {This paper presents a brief, semi-technical comparison of the essential features of the frequentist and Bayesian approaches to statistical inference, with several illustrative examples implemented in Python. The differences between frequentism and Bayesianism fundamentally stem from differing definitions of probability, a philosophical divide which leads to distinct approaches to the solution of statistical problems as well as contrasting ways of asking and answering questions about unknown parameters. After an example-driven discussion of these differences, we briefly compare several leading Python statistical packages which implement frequentist inference using classical methods and Bayesian inference using Markov Chain Monte Carlo.},
+  urldate    = {2024-04-23},
+  publisher  = {arXiv},
+  author     = {VanderPlas, Jake},
+  month      = nov,
+  year       = {2014},
+  note       = {arXiv:1411.5018 [astro-ph]},
+  keywords   = {Astrophysics - Instrumentation and Methods for Astrophysics},
+  annote     = {Comment: 9 pages; 1 figure}
+}
+
+@misc{margossian_for_2024,
+  title     = {For how many iterations should we run {Markov} chain {Monte} {Carlo}?},
+  url       = {http://arxiv.org/abs/2311.02726},
+  doi       = {10.48550/arXiv.2311.02726},
+  abstract  = {Standard Markov chain Monte Carlo (MCMC) admits three fundamental control parameters: the number of chains, the length of the warmup phase, and the length of the sampling phase. These control parameters play a large role in determining the amount of computation we deploy. In practice, we need to walk a line between achieving sufficient precision and not wasting precious computational resources and time. We review general strategies to check the length of the warmup and sampling phases, and examine the three control parameters of MCMC in the contexts of CPU- and GPU-based hardware. Our discussion centers around three tasks: (1) inference about a latent variable, (2) computation of expectation values and quantiles, and (3) diagnostics to check the reliability of the estimators. This chapter begins with general recommendations on the control parameters of MCMC, which have been battle-tested over the years and often motivate defaults in Bayesian statistical software. Usually we do not know ahead of time how a sampler will interact with a target distribution, and so the choice of MCMC algorithm and its control parameters, tend to be based on experience, re-evaluated after simulations have been obtained and analyzed. The second part of this chapter provides a theoretical motivation for our recommended approach, with pointers to some concerns and open problems. We also examine recent developments on the algorithmic and hardware fronts, which motivate new computational approaches to MCMC.},
+  urldate   = {2024-05-11},
+  publisher = {arXiv},
+  author    = {Margossian, Charles C. and Gelman, Andrew},
+  month     = feb,
+  year      = {2024},
+  note      = {arXiv:2311.02726 [stat]},
+  keywords  = {Statistics - Computation}
+}
+
+
+@misc{speagle_conceptual_2020,
+  title     = {A {Conceptual} {Introduction} to {Markov} {Chain} {Monte} {Carlo} {Methods}},
+  url       = {http://arxiv.org/abs/1909.12313},
+  doi       = {10.48550/arXiv.1909.12313},
+  abstract  = {Markov Chain Monte Carlo (MCMC) methods have become a cornerstone of many modern scientific analyses by providing a straightforward approach to numerically estimate uncertainties in the parameters of a model using a sequence of random samples. This article provides a basic introduction to MCMC methods by establishing a strong conceptual understanding of what problems MCMC methods are trying to solve, why we want to use them, and how they work in theory and in practice. To develop these concepts, I outline the foundations of Bayesian inference, discuss how posterior distributions are used in practice, explore basic approaches to estimate posterior-based quantities, and derive their link to Monte Carlo sampling and MCMC. Using a simple toy problem, I then demonstrate how these concepts can be used to understand the benefits and drawbacks of various MCMC approaches. Exercises designed to highlight various concepts are also included throughout the article.},
+  urldate   = {2024-05-16},
+  publisher = {arXiv},
+  author    = {Speagle, Joshua S.},
+  month     = mar,
+  year      = {2020},
+  note      = {arXiv:1909.12313 [astro-ph, physics:physics, stat]},
+  keywords  = {Astrophysics - Instrumentation and Methods for Astrophysics, Physics - Data Analysis, Statistics and Probability, Statistics - Other Statistics},
+  annote    = {Comment: 54 pages, 15 figures. Comments and feedback always appreciated}
+}
+
+@article{van_de_schoot_bayesian_2021,
+  title     = {Bayesian statistics and modelling.},
+  copyright = {Attribution 4.0 International},
+  abstract  = {Bayesian statistics is an approach to data analysis based on Bayes’ theorem, where
+               available knowledge about parameters in a statistical model is updated with the information in
+               observed data. The background knowledge is expressed as a prior distribution and combined
+               with observational data in the form of a likelihood function to determine the posterior distribution.
+               The posterior can also be used for making predictions about future events. This Primer describes the
+               stages involved in Bayesian analysis, from specifying the prior and data models to deriving
+               inference, model checking and refinement. We discuss the importance of prior and posterior
+               predictive checking, selecting a proper technique for sampling from a posterior distribution,
+               variational inference and variable selection. Examples of successful applications of Bayesian
+               analysis across various research fields are provided, including in social sciences, ecology, genetics,
+               medicine and more. We propose strategies for reproducibility and reporting standards, outlining
+               an updated WAMBS (when to Worry and how to Avoid the Misuse of Bayesian Statistics) checklist.
+               Finally, we outline the impact of Bayesian analysis on artificial intelligence, a major goal in the
+               next decade.},
+  publisher = {nature reviews methods primers},
+  volume    = {1},
+  number    = {1},
+  
+  language  = {en},
+  urldate   = {2024-05-17},
+  author    = {van de Schoot, Rens and Depaoli, Sarah and King, Ruth and Kramer, Bianca and Märtens, Kaspar and Tadesse, Mahlet G. and Vannucci, Marina and Gelman, Andrew and Veen, Duco and Willemsen, Joukje and Yau, Christopher},
+  year      = {2021},
+  note      = {Accepted: 2022-03-31T13:32:58Z}
+}
+
+@article{bishop2006pattern,
+  title={Pattern recognition and machine learning},
+  author={Bishop, Christopher M},
+  journal={Springer google schola},
+  volume={2},
+  pages={1122--1128},
+  year={2006}
+}

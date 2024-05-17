@@ -193,7 +193,7 @@
     place(
       top + left,
       dx: 77% - background_logo.at("width", default: 12cm) / 2,
-      dy: 23.7%,
+      dy: 18.7%,
       background_logo,
     )
   } else { none }
@@ -205,8 +205,6 @@
     footer: none,
     background: background,
   )
-  // set page(fill: background, margin: 2em)
-  set text(fill: foreground, size: 1.5em)
   logic.polylux-slide(align(horizon, body))
 }
 
