@@ -206,29 +206,41 @@
     #list(indent: 2em, [恒星的尺度，宇宙起源], [未观测到银河系内GRB], [大概每天观测到一两个])
     e.g. GRB190611B的部分拟合结果
   ]
-  #only(3)[
-    #set text(20pt)
-    #align(top + center)[
-      #image(height: 60%, "graph/ncu_plot/nihe.png")
-      #image(width: 55%, height: 30%, "graph/ncu_plot/traceplot.png")
-    ]
-  ]
 ][
+  #only(1)[
+    #align(center)[#image("graph/GRB.png")
+      GRB的火球模型]
+  ]
+   
   #only(2)[为什么对GRB谱拟合 $arrow$
      
     老师：
     - 获取极端条件下宝贵物理信息
     - 能谱成分有助于理解发射机制 
-    - 
+    - 观测参数限制重要物理过程
+    - ......
      
-    我：根据探测光子数据做统计:p...]
+    我：根据探测光子数据做统计;p...]
+   
+   
 ]
- 
+
 #slide()[
-  除了文献中常见的检查BIC/DIC/WAIC等信息准则
+  #set text(20pt)
+  #align(top + center)[
+    #image(width: 100%, height: 60%, "graph/ncu_plot/nihe.png")
+    #image(width: 80%, height: 30%, "graph/ncu_plot/traceplot.png")
+  ]
 ][
-  
+  #align(top + center)[
+    #image(height: 40%, "graph/ncu_plot/converge_test.png")
+    #image(height: 49%, "graph/ncu_plot/flux.png")
+  ]
+][
+  #set text(20pt)
+  #image("graph/ncu_plot/output_more.png")
 ]
+
  
 #slide(
   )[
