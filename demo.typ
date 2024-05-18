@@ -54,7 +54,7 @@
     [$P("data")$ --- 证据 (Evidence)],
     [$P(theta|"data")$ --- 后验概率],
   )
-  #h(4em)$P(theta|"data") prop P("data")dot P(theta)$
+  #h(4em)$P(theta|"data") prop P("data"|theta)dot P(theta)$
 ][
   #set text(22pt)
   MLE看作MAP特例 (形式上) :
@@ -114,30 +114,34 @@
    
   满足遍历性 (Ergodicity) 时Markov Chain 会收敛到唯一的目标分布
    
-  *细致平衡 (detail balance)* $ S(i) T(i,j) = S(j) T(j,i) $
+  *细致平衡 (detail balance)* $ S(i) T(j|i) = S(j) T(i|j) $
    
 ][
   #align(center + top, image(width: 50%, "graph/MC_State.png"))
   $ T = mat(p_11, p_12;p_21, p_22) $
   #align(center)[状态转移矩阵 $T(i,j)$]
 ]
- 
+
+
 #slide(
   title: [Metropolis-Hastings],
 )[
-  
-  取 proposal 分布 G (Gaussian)
-  
-  设定采样的起始值
-
-  接受率设置为 A()
-
-  $ cancel(x) $
-
-  东方
-
-  东方
-
+  #set text(23pt)
+  $
+    S(i) G(j|i) alpha(j|i) = S(j) G(i|j) alpha(i|j)
+  $
+  #only(1)[其中 $alpha(dot, dot)：$ 对G提案是否接受的修正 ]
+   
+  (类似转移矩阵) 取分布 $G$ (Gaussian)， 设定采样的初始状态 $x_0$
+   
+  #only(
+    2,
+  )[
+    从条件分布 $G(x|x_t)， (t = 0,1,2...$) 中采样 $x^star$, 从Uniform [0,1] 中采样 u
+     
+    $u <= min((p(x^star)cancel(G(x_t|x^star)))/(p(x_t)cancel(G(x^star|x_t))), 1) = alpha (x^star|x_t)$ 则前进到 $x^star$,否则停在原来位置 $x_t$
+  ]
+   
 ][
   #align(center + top)[#image(height: 70%, "graph/MH_example.png")MH采样示例]
    
@@ -162,13 +166,16 @@
 ]
  
  
-#slide()[
-  *Nested Sampling* 
-  #set text(20pt)
-   
-  可以解决Markov Chain的上述问题@ashton_nested_2022
-   
-  体积元对先验概率加权，得到
+#slide(
+  )[
+  *Nested Sampling*\
+  #set text(19pt)
+  可以解决Markov Chain的上述问题@ashton_nested_2022 
+  $
+    integral_theta limits(P("data"|theta))^L(theta) limits(P(theta))^pi(theta) d theta = lim_(|Delta theta arrow 0 |) sum L(theta) pi(theta) Delta theta
+  $
+  体积元对先验概率加权, $Z = L(X)Delta X$
+  #image("graph/nested_sample_graph.png")
 ][
   #align(center, image("graph/Nested_Sampling.png"))
 ]
@@ -188,29 +195,39 @@
    
 ]
  
-#new-section-slide("GRB处理例子")
+#new-section-slide("例：GRB谱拟合")
  
  
-#slide(title: [GRB220209A])[
-  #lorem(20) 
+#slide()[
+  #only((1, 2))[
+    #text(green, "G")#text(red, "R")#text(blue, "B")
+    是自"大爆炸"以来能量最高的一类电磁脉冲的现象，一般认为源于大质量恒星坍缩或致密天体并和
+     
+    #list(indent: 2em, [恒星的尺度，宇宙起源], [未观测到银河系内GRB], [大概每天观测到一两个])
+    e.g. GRB190611B的部分拟合结果
+  ]
+  #only(3)[
+    #set text(20pt)
+    #align(top + center)[
+      #image(height: 60%, "graph/ncu_plot/nihe.png")
+      #image(width: 55%, height: 30%, "graph/ncu_plot/traceplot.png")
+    ]
+  ]
 ][
-  #lorem(10)
+  #only(2)[为什么对GRB谱拟合 $arrow$
+     
+    老师：
+    - 获取极端条件下宝贵物理信息
+    - 能谱成分有助于理解发射机制 
+    - 
+     
+    我：根据探测光子数据做统计:p...]
 ]
  
 #slide()[
-  #lorem(20) 
+  除了文献中常见的检查BIC/DIC/WAIC等信息准则
 ][
-  #lorem(10)
-][
-  #lorem(20)
-]
- 
-#slide()[
-  #lorem(20) 
-][
-  #lorem(10)
-][
-  #lorem(20)
+  
 ]
  
 #slide(
