@@ -174,7 +174,7 @@
   $
     integral_theta limits(P("data"|theta))^L(theta) limits(P(theta))^pi(theta) d theta = lim_(|Delta theta arrow 0 |) sum L(theta) pi(theta) Delta theta
   $
-  体积元对先验概率加权, $Z = L(X)Delta X$
+  体积元对先验概率加权, $Z = sum L(X)Delta X$
   #image("graph/nested_sample_graph.png")
 ][
   #align(center, image("graph/Nested_Sampling.png"))
